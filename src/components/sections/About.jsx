@@ -14,6 +14,7 @@ export default function About() {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const [activeTab, setActiveTab] = useState('personal');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Use framer-motion scroll-based animations
   const { scrollYProgress } = useScroll({
@@ -25,113 +26,34 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [100, 0, 0, -100]);
   
   useEffect(() => {
-    if (!sectionRef.current || !imageRef.current) return;
-    
-    // Mouse follow effect for the image
     const handleMouseMove = (e) => {
+      if (!imageRef.current) return;
       const rect = imageRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
       
-      // Calculate distance from mouse to center of image
-      const distX = (e.clientX - centerX) / 30;
-      const distY = (e.clientY - centerY) / 30;
-      
-      gsap.to(imageRef.current, {
-        rotationY: distX * -1,
-        rotationX: distY,
-        boxShadow: `${distX * 0.5}px ${distY * 0.5}px 24px rgba(0, 0, 0, 0.4)`,
-        duration: 0.8,
-        ease: 'power3.out'
-      });
+      setMousePosition({ x, y });
     };
     
     const handleMouseLeave = () => {
-      gsap.to(imageRef.current, {
-        rotationY: 0,
-        rotationX: 0,
-        boxShadow: '0px 0px 24px rgba(0, 0, 0, 0.3)',
-        duration: 1,
-        ease: 'elastic.out(1, 0.8)'
-      });
+      setMousePosition({ x: 0, y: 0 });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
-    imageRef.current.addEventListener('mouseleave', handleMouseLeave);
+    const currentImageRef = imageRef.current;
     
-    // Animate skill badges with GSAP
-    const badges = document.querySelectorAll('.skill-badge');
-    badges.forEach((badge, index) => {
-      gsap.fromTo(
-        badge,
-        { opacity: 0, scale: 0.8, y: 20 },
-        { 
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.5,
-          ease: 'back.out(1.7)',
-          scrollTrigger: {
-            trigger: badge,
-            start: 'top bottom-=100',
-            toggleActions: 'play none none none'
-          },
-          delay: index * 0.05
-        }
-      );
-    });
-    
-    // Animate the service cards with staggered entrance
-    gsap.fromTo(
-      '.service-card',
-      { opacity: 0, y: 50, scale: 0.9 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.15,
-        duration: 0.7,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: '.services-grid',
-          start: 'top bottom-=50',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-    
-    // Create hover effect on service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -10,
-          scale: 1.03,
-          boxShadow: '0 14px 28px rgba(0,0,0,0.25)',
-          duration: 0.4,
-          ease: 'power2.out'
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-          duration: 0.4,
-          ease: 'power2.out'
-        });
-      });
-    });
+    if (currentImageRef) {
+      currentImageRef.addEventListener('mouseleave', handleMouseLeave);
+    }
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      if (imageRef.current) {
-        imageRef.current.removeEventListener('mouseleave', handleMouseLeave);
+      if (currentImageRef) {
+        currentImageRef.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
   }, []);
-
+  
   const skills = {
     technical: [
       "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", 
@@ -349,7 +271,7 @@ export default function About() {
               >
                 {activeTab === 'personal' && (
                   <div>
-                    <h3 className="text-3xl font-bold text-white mb-5">Hi there! I'm <span className="text-gray-300">Ebong Thiery</span></h3>
+                    <h3 className="text-3xl font-bold text-white mb-5">Hi there! I&apos;m <span className="text-gray-300">Ebong Thiery</span></h3>
                     <p className="text-gray-300 mb-6 leading-relaxed">{personalData.bio}</p>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-gray-300">
@@ -454,7 +376,7 @@ export default function About() {
         <div className="mt-24">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-4">My Skills</h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">Here are some of the technologies and skills I've worked with.</p>
+            <p className="text-gray-400 max-w-2xl mx-auto">Here are some of the technologies and skills I&apos;ve worked with.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

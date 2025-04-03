@@ -260,12 +260,12 @@ export default function Hero() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-center lg:text-left">
-              <span className="text-white">Hi, I'm</span>{" "}
+              <span className="text-white">Hi, I&apos;m</span>{" "}
               <span className="gradient-text">Ebong Thiery</span>
             </h1>
             
             <p ref={textRef} className="text-gray-300 max-w-xl text-center lg:text-left mb-8">
-              I design and develop engaging web applications that deliver exceptional user experiences. Let's bring your ideas to life!
+              I design and develop engaging web applications that deliver exceptional user experiences. Let&apos;s bring your ideas to life!
             </p>
 
             <motion.div 
