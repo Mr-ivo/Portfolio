@@ -15,7 +15,7 @@ const skills = [
     category: "Frontend",
     icon: "💻",
     items: [
-      { name: "HTML5", level: 90 },
+      { name: "HTML5", level: 100 },
       { name: "CSS3/SCSS", level: 85 },
       { name: "JavaScript", level: 90 },
       { name: "React.js", level: 88 },
@@ -32,7 +32,7 @@ const skills = [
       { name: "MongoDB", level: 80 },
       { name: "SQL", level: 75 },
       { name: "RESTful APIs", level: 85 },
-      { name: "Python", level: 70 },
+      { name: "Python", level: 60 },
     ]
   },
   {
@@ -40,11 +40,9 @@ const skills = [
     icon: "🛠️",
     items: [
       { name: "Git & GitHub", level: 85 },
-      { name: "Docker", level: 70 },
-      { name: "Webpack", level: 75 },
-      { name: "Figma", level: 70 },
-      { name: "UI/UX Design", level: 70 },
-      { name: "Testing", level: 70 },
+      { name: "Figma", level: 45 },
+      { name: "UI/UX Design", level: 50 },
+      { name: "Testing", level: 60 },
     ]
   }
 ];
@@ -185,7 +183,6 @@ export default function Skills() {
       ref={sectionRef}
       className="py-20 bg-gradient-to-b from-dark to-dark/95 relative overflow-hidden"
     >
-      {/* Background grid animation */}
       <div className="absolute inset-0 z-0 grid-background">
         {[...Array(100)].map((_, i) => (
           <div 
@@ -221,7 +218,6 @@ export default function Skills() {
               key={categoryIndex}
               className="skill-category card hover:transform hover:scale-[1.01] transition-all duration-500 relative"
             >
-              {/* Card accent */}
               <div className="absolute h-1 top-0 left-0 right-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-t-xl"></div>
               
               <motion.div
@@ -255,8 +251,7 @@ export default function Skills() {
                   </div>
                 ))}
               </div>
-              
-              {/* Floating decorative element */}
+
               <motion.div
                 animate={{ 
                   rotate: [0, 10, 0, -10, 0],
@@ -269,8 +264,7 @@ export default function Skills() {
                 }}
                 className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-primary-500/50 blur-[1px]"
               ></motion.div>
-              
-              {/* Progress indicator */}
+
               <div className="mt-5 flex justify-center">
                 <div className="w-16 h-1 bg-dark/60 rounded-full overflow-hidden">
                   <motion.div 
@@ -285,8 +279,7 @@ export default function Skills() {
             </div>
           ))}
         </div>
-        
-        {/* Extra decorative element */}
+
         <div className="flex justify-center mt-16">
           <motion.div
             className="w-20 h-20 relative"

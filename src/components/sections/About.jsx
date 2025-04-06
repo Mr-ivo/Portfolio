@@ -58,12 +58,12 @@ export default function About() {
     technical: [
       "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", 
       "React.js", "Next.js", "Node.js", "Express", 
-      "MongoDB", "PostgreSQL", "RESTful APIs", "GraphQL",
-      "Tailwind CSS", "Git/GitHub", "AWS", "Docker"
+      "MongoDB", "PostgreSQL", "RESTful APIs",
+      "Tailwind CSS", "Git/GitHub"
     ],
     design: [
-      "UI/UX Design", "Figma", "Adobe XD", "Responsive Design",
-      "Animation", "Design Systems", "Wireframing", "Prototyping"
+      "UI/UX Design", "Figma", "Responsive Design",
+      "Animation", "Wireframing", "Prototyping"
     ],
     soft: [
       "Problem Solving", "Team Collaboration", "Communication",
@@ -137,10 +137,8 @@ export default function About() {
       ref={sectionRef}
       className="py-24 bg-dark relative overflow-hidden"
     >
-      {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(50,50,50,0.2)_0%,rgba(0,0,0,0)_60%)] z-0"></div>
-      
-      {/* Grid pattern overlay */}
+
       <div 
         className="absolute inset-0 opacity-[0.03] z-0"
         style={{
@@ -148,8 +146,7 @@ export default function About() {
           backgroundSize: '20px 20px'
         }}
       ></div>
-      
-      {/* Decorative elements */}
+
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-500/50 to-transparent"></div>
       <motion.div 
         className="absolute top-40 right-0 w-72 h-72 rounded-full blur-[120px] z-0"
@@ -172,7 +169,6 @@ export default function About() {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Image Column */}
           <div className="lg:col-span-5 about-image relative">
             <div 
               ref={imageRef} 
@@ -208,7 +204,7 @@ export default function About() {
               {/* Download Resume button */}
               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
                 <a 
-                  href="/assets/ebong_thiery_cv.pdf" 
+                  href="/assets/Cv3.pdf" 
                   download
                   className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-5 py-3 rounded-full shadow-lg transition-all duration-300 border border-gray-700"
                 >
@@ -308,11 +304,11 @@ export default function About() {
                       <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[1px] before:bg-gray-800">
                         <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-gray-800 border-2 border-gray-700"></div>
                         <div className="mb-2">
-                          <h4 className="text-xl font-semibold text-white">Senior Frontend Developer</h4>
+                          <h4 className="text-xl font-semibold text-white">Junior Frontend Developer</h4>
                           <div className="flex flex-wrap items-center gap-x-3 text-sm">
                             <span className="text-gray-400">TechSolutions Inc.</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-gray-700"></span>
-                            <span className="text-gray-500">2020 - Present</span>
+                            <span className="text-gray-500">2022 - Present</span>
                           </div>
                         </div>
                       </div>
@@ -324,7 +320,7 @@ export default function About() {
                           <div className="flex flex-wrap items-center gap-x-3 text-sm">
                             <span className="text-gray-400">WebCraft Agency</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-gray-700"></span>
-                            <span className="text-gray-500">2018 - 2020</span>
+                            <span className="text-gray-500">2023 - 2025</span>
                           </div>
                         </div>
                       </div>
@@ -341,11 +337,11 @@ export default function About() {
                       <div className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[1px] before:bg-gray-800">
                         <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-gray-800 border-2 border-gray-700"></div>
                         <div className="mb-2">
-                          <h4 className="text-xl font-semibold text-white">Bachelor of Science in Computer Science</h4>
+                          <h4 className="text-xl font-semibold text-white">Am still a student at Seven Advanced Academy</h4>
                           <div className="flex flex-wrap items-center gap-x-3 text-sm">
-                            <span className="text-gray-400">University of Technology</span>
+                            <span className="text-gray-400">Seven Advanced Academy</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-gray-700"></span>
-                            <span className="text-gray-500">2018</span>
+                            <span className="text-gray-500">2022</span>
                           </div>
                         </div>
                       </div>
@@ -354,9 +350,6 @@ export default function About() {
                     <div>
                       <h4 className="text-lg font-semibold text-white mb-4">Certifications</h4>
                       <div className="flex flex-wrap gap-3">
-                        <span className="px-4 py-2 bg-gray-800/60 border border-gray-700 rounded-lg text-gray-300 text-sm">
-                          AWS Certified Developer
-                        </span>
                         <span className="px-4 py-2 bg-gray-800/60 border border-gray-700 rounded-lg text-gray-300 text-sm">
                           MongoDB Certified
                         </span>

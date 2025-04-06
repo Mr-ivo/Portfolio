@@ -13,20 +13,19 @@ export default function StarCanvas() {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     const stars = [];
-    const starCount = 200; // Adjustable star density
+    const starCount = 200; 
     
-    // Make canvas full screen and handle resize
+
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       
-      // Regenerate stars when canvas size changes
       generateStars();
     };
     
     // Create a star object
     const generateStars = () => {
-      stars.length = 0; // Clear existing stars
+      stars.length = 0; 
       
       for (let i = 0; i < starCount; i++) {
         stars.push({
@@ -41,7 +40,6 @@ export default function StarCanvas() {
       }
     };
     
-    // Draw stars on canvas
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       

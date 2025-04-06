@@ -17,20 +17,20 @@ const projects = [
   {
     title: "Apparell_glow",
     description: "A fully responsive e-commerce website with modern UI and seamless user experience.",
-    image: "/assets/apparell_glow.jpg",
+    image: "/assets/id-11134207-7qul0-lhyaw19o04c018.jpeg",
     technologies: ["Next.js", "Node.js", "Tailwind CSS", "MongoDB"],
     link: "https://apparellglow.vercel.app/",
-    github: "#",
+    github: "https://github.com/Mr-ivo/Apparell_Glow",
     category: "Web App",
     icon: <Code className="w-4 h-4" />
   },
   {
-    title: "UrbanCamerron",
+    title: "UrbanCameroon",
     description: "Interactive platform showcasing different cities in Cameroon with immersive visuals.",
-    image: "/assets/urban_cameroon.jpg",
-    technologies: ["React", "GSAP", "Tailwind CSS", "Firebase"],
+    image: "/assets/camer.jpg",
+    technologies: ["React","Tailwind CSS"],
     link: "https://urban-cameroon.vercel.app/",
-    github: "#",
+    github: "https://github.com/Mr-ivo/Adventure02",
     category: "Web App",
     icon: <Layout className="w-4 h-4" />
   },
@@ -40,7 +40,7 @@ const projects = [
     image: "/assets/portfolio.jpg",
     technologies: ["Next.js", "Framer Motion", "GSAP", "Tailwind CSS"],
     link: "#",
-    github: "#",
+    github: "https://github.com/Mr-ivo/Portfolio",
     category: "UI/UX",
     icon: <Layers className="w-4 h-4" />
   }

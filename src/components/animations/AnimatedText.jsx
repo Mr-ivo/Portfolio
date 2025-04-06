@@ -14,7 +14,6 @@ export default function AnimatedText({
   // Split text into words and characters for animation
   const words = text.split(' ');
 
-  // Animation variants
   const container = {
     hidden: {},
     visible: (i = 1) => ({

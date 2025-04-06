@@ -150,7 +150,7 @@ export default function Contact() {
                 <div>
                   <h4 className="text-gray-300 font-medium mb-1">Email</h4>
                   <a href="mailto:your.email@example.com" className="text-white hover:text-primary-400 transition-colors">
-                    your.email@example.com
+                     ebongthierry569@gmail.com
                   </a>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function Contact() {
                 <div>
                   <h4 className="text-gray-300 font-medium mb-1">Phone</h4>
                   <a href="tel:+1234567890" className="text-white hover:text-primary-400 transition-colors">
-                    +1 (234) 567-890
+                    (+237) 679373244
                   </a>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-gray-300 font-medium mb-1">Location</h4>
-                  <p className="text-white">San Francisco, CA</p>
+                  <p className="text-white">Douala Cameroon</p>
                 </div>
               </div>
             </div>
@@ -181,10 +181,10 @@ export default function Contact() {
             <div className="mt-10">
               <h4 className="text-white font-medium mb-4">Find me on</h4>
               <div className="flex space-x-4">
-                {['github', 'twitter', 'linkedin', 'instagram'].map((social, index) => (
+                {['github', 'linkedin', 'instagram'].map((social, index) => (
                   <motion.a
                     key={index}
-                    href={`https://${social}.com/yourusername`}
+                    href={`https://${social}.com/WattyMc`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-gray-700 rounded-full text-gray-300 hover:text-white hover:bg-primary-500/20 transition-all"
@@ -193,7 +193,6 @@ export default function Contact() {
                   >
                     <span className="sr-only">{social}</span>
                     {social === 'github' && <Github size={20} />}
-                    {social === 'twitter' && <Twitter size={20} />}
                     {social === 'linkedin' && <Linkedin size={20} />}
                     {social === 'instagram' && <Instagram size={20} />}
                   </motion.a>

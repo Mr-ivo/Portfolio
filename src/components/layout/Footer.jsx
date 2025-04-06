@@ -30,9 +30,7 @@ export default function Footer() {
           />
         </div>
       
-        {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left column - about */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">About</h3>
             <p className="text-gray-300 mb-4">
@@ -62,8 +60,7 @@ export default function Footer() {
               </motion.a>
             </div>
           </div>
-          
-          {/* Middle column - quick links */}
+
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
@@ -91,7 +88,7 @@ export default function Footer() {
               className="inline-flex items-center text-gray-300 hover:text-white transition-colors duration-300"
             >
               <Mail size={16} className="mr-2" />
-              your.email@example.com
+              ebongthierry569@gmail.com
             </a>
           </div>
         </div>

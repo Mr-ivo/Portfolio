@@ -6,7 +6,7 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 
-export default function Page() { // Load GSAP ScrollTrigger on client-side only
+export default function Page() { 
   useEffect(() => {
     const loadGsapPlugins = async () => {
       const { ScrollTrigger, ScrollToPlugin } = await import('gsap/all');
