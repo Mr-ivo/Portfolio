@@ -15,12 +15,7 @@ export async function POST(request) {
       );
     }
 
-    console.log('Contact form submission received:', {
-      name,
-      email,
-      subject,
-      message: message.substring(0, 100) + (message.length > 100 ? '...' : '')
-    });
+    console.log('Contact form submission received from:', email);
 
     if (FORCE_DEV_MODE || process.env.USE_DUMMY_EMAIL === 'true') {
       console.log('Development mode: No actual email sent');
@@ -41,20 +36,32 @@ export async function POST(request) {
         devMode: true
       }, { status: 200 });
     }
- 
+
+    // Check for email credentials
+    const emailUser = process.env.EMAIL_USER;
+    const emailPassword = process.env.EMAIL_PASSWORD;
+    
+    if (!emailUser || !emailPassword) {
+      console.error('Email credentials missing in environment variables');
+      return NextResponse.json(
+        { message: 'Server configuration error. Please try again later or contact directly via email.' },
+        { status: 500 }
+      );
+    }
+
     try {
       // Create a simple Nodemailer transporter using GMAIL
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD,
+          user: emailUser,
+          pass: emailPassword,
         },
       });
 
       const emailContent = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER, 
+        from: emailUser,
+        to: emailUser, 
         replyTo: email,
         subject: `Portfolio Contact: ${subject}`,
         html: `
@@ -80,8 +87,15 @@ export async function POST(request) {
       
     } catch (emailError) {
       console.error('Email error:', emailError);
-      throw new Error(
-        `Failed to send email: ${emailError.message || 'Unknown error'}`
+      
+      // Provide a more detailed error message for debugging
+      const errorDetails = emailError.message || 'Unknown error';
+      console.error('Detailed error:', errorDetails);
+      
+      // For security, don't expose detailed error to client
+      return NextResponse.json(
+        { message: 'Failed to send your message. Please try again later or contact me directly via email.' },
+        { status: 500 }
       );
     }
     

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ebongng.site
+
+# Sitemaps
+Sitemap: https://ebongng.site/sitemap.xml
