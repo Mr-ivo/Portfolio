@@ -84,11 +84,11 @@ export default function Footer() {
               Feel free to reach out if you have any questions or would like to work together.
             </p>
             <a 
-              href="mailto:your.email@example.com" 
+              href="mailto:ebongngsite@ebongng.site" 
               className="inline-flex items-center text-gray-300 hover:text-white transition-colors duration-300"
             >
               <Mail size={16} className="mr-2" />
-              ebongthierry569@gmail.com
+              ebongngsite@ebongng.site
             </a>
           </div>
         </div>

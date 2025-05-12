@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { ServerClient } from 'postmark';
 
-const FORCE_DEV_MODE = false; // Set to false to use actual email sending
+const FORCE_DEV_MODE = false; 
 
 export async function POST(request) {
   try {
@@ -23,8 +23,8 @@ export async function POST(request) {
       await new Promise(resolve => setTimeout(resolve, 800));
 
       console.log('Would have sent email with:', {
-        to: process.env.EMAIL_RECIPIENT || 'recipient@example.com',
-        from: process.env.EMAIL_FROM || 'sender@example.com',
+        to: process.env.EMAIL_RECIPIENT || 'ebongngsite@ebongng.site',
+        from: process.env.EMAIL_FROM || 'ebongngsite@ebongng.site',
         subject: `Portfolio Contact: ${subject}`,
         name,
         email,
@@ -37,12 +37,13 @@ export async function POST(request) {
       }, { status: 200 });
     }
 
-    // Check for email credentials
-    const emailUser = process.env.EMAIL_USER;
-    const emailPassword = process.env.EMAIL_PASSWORD;
-    
-    if (!emailUser || !emailPassword) {
-      console.error('Email credentials missing in environment variables');
+    // Check for Postmark credentials
+    const postmarkServerToken = process.env.POSTMARK_SERVER_TOKEN;
+    const emailFrom = process.env.EMAIL_FROM || 'ebongngsite@ebongng.site';
+    const emailTo = process.env.EMAIL_TO || 'ebongngsite@ebongng.site';
+
+    if (!postmarkServerToken) {
+      console.error('Postmark server token missing in environment variables');
       return NextResponse.json(
         { message: 'Server configuration error. Please try again later or contact directly via email.' },
         { status: 500 }
@@ -50,36 +51,35 @@ export async function POST(request) {
     }
 
     try {
-      // Create a simple Nodemailer transporter using GMAIL
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: emailUser,
-          pass: emailPassword,
-        },
-      });
-
-      const emailContent = {
-        from: emailUser,
-        to: emailUser, 
-        replyTo: email,
-        subject: `Portfolio Contact: ${subject}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
-            <h2 style="color: #6b46c1;">New Contact Form Submission</h2>
-            <p><strong>From:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 4px;">
-              <p><strong>Message:</strong></p>
-              <p style="white-space: pre-wrap;">${message}</p>
-            </div>
+      // Initialize Postmark client
+      const client = new ServerClient(postmarkServerToken);
+      
+      // Create email content
+      const emailContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
+          <h2 style="color: #6b46c1;">New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 4px;">
+            <p><strong>Message:</strong></p>
+            <p style="white-space: pre-wrap;">${message}</p>
           </div>
-        `
-      };
+        </div>
+      `;
+      
+      // Send the email using Postmark
+      const response = await client.sendEmail({
+        From: emailFrom,
+        To: emailTo,
+        ReplyTo: email,
+        Subject: `Portfolio Contact: ${subject}`,
+        HtmlBody: emailContent,
+        MessageStream: 'outbound'
+      });
+      
+      console.log('Email sent successfully with Postmark!', response.MessageID);
 
-      const info = await transporter.sendMail(emailContent);
-      console.log('Email sent successfully! Message ID:', info.messageId);
 
       return NextResponse.json({ 
         message: 'Message sent successfully! You will receive a response soon.' 
@@ -88,13 +88,12 @@ export async function POST(request) {
     } catch (emailError) {
       console.error('Email error:', emailError);
       
-      // Provide a more detailed error message for debugging
-      const errorDetails = emailError.message || 'Unknown error';
-      console.error('Detailed error:', errorDetails);
+      // Log the error but keep it simple
+      console.error('Error details:', emailError.message || 'Unknown error');
       
       // For security, don't expose detailed error to client
       return NextResponse.json(
-        { message: 'Failed to send your message. Please try again later or contact me directly via email.' },
+        { message: 'Failed to send your message. Please try again later or contact me directly via email at ebongngsite@ebongng.site' },
         { status: 500 }
       );
     }
