@@ -10,7 +10,6 @@ import AnimateInView from '../animations/AnimateInView';
 
 export default function Hero() {
   const heroRef = useRef(null);
-  const textRef = useRef(null);
   const canvasRef = useRef(null);
   
   useEffect(() => {
@@ -90,45 +89,7 @@ export default function Hero() {
     }
   }, []);
   
-  // Text reveal animation
-  useEffect(() => {
-    if (!textRef.current) return;
-    
-    const textElement = textRef.current;
-    const text = textElement.textContent;
-    
-    if (text) {
-      textElement.innerHTML = '';
-      
-      // Split text into characters
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(20px)';
-        span.style.display = 'inline-block';
-        textElement.appendChild(span);
-        
-        // Use dynamic import for GSAP
-        const animateText = async () => {
-          try {
-            const { default: gsap } = await import('gsap');
-            gsap.to(span, {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              delay: 1 + i * 0.04,
-              ease: 'back.out(1.7)'
-            });
-          } catch (error) {
-            console.error('Failed to load GSAP:', error);
-          }
-        };
-        
-        animateText();
-      });
-    }
-  }, []);
+  // Note: Text animation is now handled by the motion component
   
   // Image tilt effect
   useEffect(() => {
@@ -264,9 +225,15 @@ export default function Hero() {
               <span className="gradient-text">Ebong Thiery</span>
             </h1>
             
-            <p ref={textRef} className="text-gray-300 max-w-xl text-center lg:text-left mb-8">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              className="text-gray-300 max-w-xl text-center lg:text-left mb-8 tracking-wide leading-relaxed" 
+              style={{ letterSpacing: '0.05em', wordSpacing: '0.2em' }}
+            >
               I design and develop engaging web applications that deliver exceptional user experiences. Let&apos;s bring your ideas to life!
-            </p>
+            </motion.p>
 
             <motion.div 
               variants={containerVariants}
