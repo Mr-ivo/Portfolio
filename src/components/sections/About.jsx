@@ -204,7 +204,7 @@ export default function About() {
               {/* Download Resume button */}
               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
                 <a 
-                  href="/assets/Cv3.pdf" 
+                  href="/assets/Cv1.jpeg" 
                   download
                   className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-5 py-3 rounded-full shadow-lg transition-all duration-300 border border-gray-700"
                 >

@@ -242,7 +242,7 @@ export default function Hero() {
               className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
               <motion.a
-                href="/assets/Cv3.pdf"
+                href="/assets/Cv1.jpeg"
                 download
                 variants={childVariants}
                 whileHover={{ 

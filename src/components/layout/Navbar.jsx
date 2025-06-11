@@ -83,7 +83,7 @@ export default function Navbar() {
         {/* Resume Button */}
         <div className="hidden lg:block">
           <a 
-            href="/assets/Cv3.pdf" 
+            href="/assets/Cv1.jpeg" 
             download
             className="btn-outline flex items-center"
           >
@@ -142,7 +142,7 @@ export default function Navbar() {
                 className="pt-4"
               >
                 <a 
-                  href="/assets/Cv3.pdf" 
+                  href="/assets/Cv1.jpeg" 
                   download
                   className="btn-primary flex items-center"
                   onClick={() => setIsOpen(false)}
